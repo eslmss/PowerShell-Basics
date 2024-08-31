@@ -28,6 +28,5 @@ $intervalo = New-TimeSpan -Minutes 5
 # crea el desencadenador
 $desencadenador = New-ScheduledTaskTrigger -Once -At $horaEjecucion -RepetitionInterval $intervalo
 
-# registrar la tarea "PyTestPowerShell" (corriéndo este script PowerShell como Admin)
+# registra la tarea "PyTestPowerShell" (corriéndo este script PowerShell como Admin)
 Register-ScheduledTask -Action $tarea -Trigger $desencadenador -TaskName "PyTestPowershell" -RunLevel Highest
-

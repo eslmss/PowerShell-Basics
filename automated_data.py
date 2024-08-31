@@ -22,22 +22,21 @@ def agregar_fila_a_excel(ruta_archivo):
         {
             'ejecucion': [ultimo_numero], 
             'timestamp': [datetime.now()]
-            }
+        }
         )
     # print("DEBUG----->", nueva_fila)
 
-    # concatena la nueva fila al df. Parsea los tipos de datos del df y la fila para asegurar que los tipos de datos sean consistentes para prevenir FutureWarnings
+    # concatena la nueva fila al df. Parsea los tipos de datos del df y la fila para asegurar que los tipos de datos sean consistentes y prevenir FutureWarnings
     df = pd.concat([df.astype(nueva_fila.dtypes), nueva_fila.astype(df.dtypes)], ignore_index=True)
 
     # guarda el df en el archivo Excel, en la ruta recibida como parámetro
     df.to_excel(ruta_archivo, index=False)
     # print(df)
 
-# Ruta del archivo Excel
-# ruta_actual = os.getcwd()
+# ruta_actual
 ruta_script = os.path.dirname(os.path.abspath(__file__))
 path = ruta_script + '\df_automated.xlsx'
 # print(path)
 
-# llama a la función para agregar una nueva fila, si el Excel está abierto durante la ejecución automatizada, NO se agregará la fila
+# llama a la función para agregar una nueva fila, si el Excel está abierto durante la ejecución automatizada NO se agregará la fila
 agregar_fila_a_excel(path)
